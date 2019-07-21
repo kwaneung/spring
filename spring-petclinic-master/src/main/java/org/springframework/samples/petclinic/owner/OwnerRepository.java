@@ -45,6 +45,11 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
     @Transactional(readOnly = true)
     Collection<Owner> findByLastName(@Param("lastName") String lastName);
 
+    // :firstName 이 변수. 따라서 와일드카드를 :앞에 붙여줘야함 와일드카드인 %를 앞뒤에 넣어줌으로써 입력한 문자열이 포함된 모든사람 검색
+    @Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.firstName LIKE %:firstName%")
+    @Transactional(readOnly = true)
+    Collection<Owner> findByFirstName(@Param("firstName") String firstName);
+
     /**
      * Retrieve an {@link Owner} from the data store by id.
      * @param id the id to search for
@@ -59,6 +64,4 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
      * @param owner the {@link Owner} to save
      */
     void save(Owner owner);
-
-
 }
