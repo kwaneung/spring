@@ -41,7 +41,7 @@ class OwnerController {
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final OwnerRepository owners;
 
-
+    //생성자를 통해서 OwnerRepository 를 받아와서 사용하고있음.
     public OwnerController(OwnerRepository clinicService) {
         this.owners = clinicService;
     }
